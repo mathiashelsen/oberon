@@ -17,8 +17,8 @@ class Material
   private:
     double nuclideDensity;
   public:
-    virtual double      getSigma_T  (double E);
-    virtual t_reaction  getReaction (double rand);
+    double      getSigma_T  (double E);
+    t_reaction  getReaction (double rand);
 };
 
 #endif

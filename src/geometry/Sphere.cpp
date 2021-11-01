@@ -1,18 +1,18 @@
 #include "Sphere.hpp"
 
-Sphere::Sphere(Vector* x, double r)
+Sphere::Sphere(std::vector<double>* pos, double r)
 {
-  _x = x->_x;
-  _y = x->_y;
-  _z = x->_z;
+  _x = (*pos)[0];
+  _y = (*pos)[1];
+  _z = (*pos)[2];
   _r = r;
 }
 
-bool Sphere::isInside(Vector* x)
+bool Sphere::isInside(std::vector<double>* pos)
 {
   double delta;
 
-  delta = (x->_x - _x)*(x->_x - _x) + (x->_y - _y)*(x->_y - _y) + (x->_z - _z)*(x->_z - _z);
+  delta = ((*pos)[0] - _x)*((*pos)[0] - _x) + ((*pos)[1] - _y)*((*pos)[1] - _y) + ((*pos)[2] - _z)*((*pos)[2] - _z);
 
   if( delta < _r*_r )
     return true;

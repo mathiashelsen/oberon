@@ -2,7 +2,7 @@
 #define _SPHERE_HPP
 
 #include "Volume.hpp"
-#include "Vector.hpp"
+#include <vector>
 
 class Sphere : public Volume
 {
@@ -12,8 +12,8 @@ class Sphere : public Volume
     double _z;
     double _r;
   public:
-    Sphere(Vector* x, double r);
-    bool isInside(Vector* x);
+    Sphere(std::vector<double>*pos , double r);
+    bool isInside(std::vector<double>* pos);
 };
 
 #endif

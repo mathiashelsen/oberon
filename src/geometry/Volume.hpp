@@ -1,11 +1,12 @@
 #ifndef _VOLUME_HPP
 #define _VOLUME_HPP
 
-#include "Vector.hpp"
+#include <vector>
 
 class Volume{
   public:
-    virtual bool isInside(Vector *x) = 0;
+    ~Volume () { ; };
+    virtual bool isInside(std::vector<double>* x) = 0;
 };
 
 #endif
