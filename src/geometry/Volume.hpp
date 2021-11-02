@@ -3,7 +3,11 @@
 
 #include <vector>
 
+#include "../material/Material.hpp"
+
 class Volume{
+  protected:
+    Material* material;
   public:
     ~Volume () { ; };
     virtual bool isInside(std::vector<double>* x) = 0;
