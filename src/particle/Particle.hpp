@@ -5,6 +5,7 @@ class Particle
 {
   private:
     double _x, _y, _z;
+    double E;
 };
 
 #endif
