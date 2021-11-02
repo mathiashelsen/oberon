@@ -5,12 +5,18 @@
 #include <random>
 
 #include "geometry/Volume.hpp"
+#include "particle/Particle.hpp"
 
 class Solver
 {
   protected:
-    vector<Volume *>    objects;
-    vector<Particle *>  particles;
+    std::vector<Volume *>*   objects;
+    std::vector<Particle *>* particles;
+    int N_max;
+  public:
+          Solver        (std::vector<Volume *>* _objects);
+          ~Solver       ();
+    void  initParticles (int N_init);
 };
 
 #endif
