@@ -4,13 +4,14 @@
 #include <vector>
 
 #include "../material/Material.hpp"
+#include "../particle/Particle.hpp"
 
 class Volume{
-  protected:
-    Material* _material;
   public:
+    Material* _material;
     ~Volume () { ; };
     virtual bool isInside(double* x) = 0;
+    virtual bool isInside(Particle* p) = 0;
 };
 
 #endif

@@ -3,6 +3,7 @@
 
 #include "Volume.hpp"
 #include "../material/Material.hpp"
+#include "../particle/Particle.hpp"
 
 #include <vector>
 
@@ -16,6 +17,7 @@ class Sphere : public Volume
   public:
     Sphere(double* pos , double r, Material *material);
     bool isInside(double* pos);
+    bool isInside(Particle* p);
 };
 
 #endif

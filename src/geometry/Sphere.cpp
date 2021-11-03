@@ -21,3 +21,16 @@ bool Sphere::isInside(double* pos)
   else
     return false;
 }
+
+
+bool Sphere::isInside(Particle* p)
+{
+  double delta;
+
+  delta = (p->_x - _x)*(p->_x - _x) + (p->_y - _y)*(p->_y - _y) + (p->_z - _z)*(p->_z - _z);
+
+  if( delta < _r*_r )
+    return true;
+  else
+    return false;
+}

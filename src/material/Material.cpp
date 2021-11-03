@@ -10,11 +10,7 @@ t_reaction  Material::getReaction (double rand)
   return Scattering;
 }
 
-std::vector<Particle*> Material::getFissionNeutrons(double rand)
+double      Material::getFissionNeutrons(double E)
 {
-  std::vector<Particle*> retVal;
-  Particle* p = new Particle();
-  retVal.push_back(p);
-
-  return retVal;
+  return 0.0;
 }

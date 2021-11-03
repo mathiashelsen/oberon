@@ -20,9 +20,9 @@ class Material
   private:
     double nuclideDensity;
   public:
-    double            getSigma_T  (double E);
-    t_reaction        getReaction (double rand);
-    std::vector<Particle*> getFissionNeutrons(double rand);
+    virtual double      getSigma_T  (double E);
+    virtual t_reaction  getReaction (double rand);
+    virtual double      getFissionNeutrons(double E);
 };
 
 #endif

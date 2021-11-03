@@ -31,6 +31,20 @@ bool            Box::isInside  (double* pos)
   }
 }
 
+bool            Box::isInside  (Particle* p)
+{
+  if( fabs(p->_x - x) < w_x/2.0 &&
+      fabs(p->_y - y) < w_y/2.0 &&
+      fabs(p->_z - z) < w_z/2.0 )
+  {
+    return true;
+  }
+  else
+  {
+    return false;
+  }
+}
+
 double*         Box::getExtent ()
 {
   double* extent = new double[6];

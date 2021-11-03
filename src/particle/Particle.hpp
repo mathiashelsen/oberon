@@ -3,7 +3,7 @@
 
 class Particle
 {
-  private:
+  public:
     double _x, _y, _z;
     double E;
 };

@@ -11,31 +11,37 @@
 
 int main(int argc, char** argv)
 {
-  Vacuum  vac;
-  HEU     heu;
+  double r = 1.0;
+  for(int i = 1; i < 50; i++)
+  {
+    r = 0.2 * (double) i;
+    Vacuum  vac;
+    HEU     heu;
 
-  double  pos[3];
-  double  width[3];
+    double  pos[3];
+    double  width[3];
 
-  pos[0]    = 0.0;
-  pos[1]    = 0.0;
-  pos[2]    = 0.0;
+    pos[0]    = 0.0;
+    pos[1]    = 0.0;
+    pos[2]    = 0.0;
 
-  width[0]  = 1.0;
-  width[1]  = 1.0;
-  width[2]  = 1.0;
+    width[0]  = 2.0*r;
+    width[1]  = 2.0*r;
+    width[2]  = 2.0*r;
 
 
-  Box     simBox(pos, width, (Material *)&vac); 
-  Sphere  criticalMass(pos, 0.25, (Material *)&heu);
+    Box     simBox(pos, width, (Material *)&vac); 
+    Sphere  criticalMass(pos, r, (Material *)&heu);
 
-  std::vector<Volume *> objects;
-  objects.push_back(&criticalMass);
+    std::vector<Volume *> objects;
+    objects.push_back(&criticalMass);
 
-  Solver  simulator(&objects, &simBox);
-  simulator.initParticles(100000);
+    Solver  simulator(&objects, &simBox);
+    simulator.initParticles(10000);
 
-  simulator.runSimulation(10);
+    std::cout << r << "\t" << (4.0*M_PI/3.0*r*r*r*19.1)/1000.0 << "\t";
+    simulator.runSimulation(1);
+  }
 
   return EXIT_SUCCESS;
 }

@@ -6,6 +6,9 @@
 
 #include "Volume.hpp"
 
+#include "../material/Material.hpp"
+#include "../particle/Particle.hpp"
+
 class Box: public Volume
 {
   protected:
@@ -16,6 +19,7 @@ class Box: public Volume
                                double* width, 
                                 Material* material);
     bool            isInside  (double* pos);
+    bool            isInside  (Particle* p);
     double*         getExtent ();
 };
 
