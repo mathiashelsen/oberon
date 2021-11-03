@@ -43,3 +43,45 @@ void  Solver::initParticles (int N_init)
 
   delete extent;
 }
+
+void  Solver::runSimulation(int N_generations)
+{
+  int n_begin = particles->size();
+  int n_end   = n_begin;
+  double k;
+  std::vector<Particle*> *nextGenParticles;
+
+  // Loop for N_generations
+  for(int i = 0; i < N_generations; i++)
+  {
+     nextGenParticles = new std::vector<Particle *>;
+
+    // Loop over all particles
+    for(std::vector<Particle*>::iterator it = particles->begin(); it != particles->end(); ++it)
+    {
+      // Do random walk until particle is absorbed or outside of simulation
+      // free particle if it's finished
+      while( *it )
+      {
+        //Diffuse...
+        //
+        //Fission...
+        //
+        // ...
+       
+        // When done...
+        delete *it;
+        *it = NULL;
+       }
+    }
+
+    delete particles;
+
+    particles = nextGenParticles;
+
+    n_end     = particles->size();
+    k       = n_end / n_begin;
+    n_begin = n_end;
+    std::cout << "Generation " << i << ", k = " << k << std::endl;
+  }
+}

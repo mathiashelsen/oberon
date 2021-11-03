@@ -35,5 +35,7 @@ int main(int argc, char** argv)
   Solver  simulator(&objects, &simBox);
   simulator.initParticles(100000);
 
+  simulator.runSimulation(10);
+
   return EXIT_SUCCESS;
 }
