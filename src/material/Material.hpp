@@ -2,7 +2,7 @@
 #define _MATERIAL_HPP
 
 #include "../particle/Particle.hpp"
-\
+
 #include <vector>
 
 // The possible interaction a neutron can undergo with the material

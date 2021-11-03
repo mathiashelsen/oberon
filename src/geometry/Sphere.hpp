@@ -2,6 +2,8 @@
 #define _SPHERE_HPP
 
 #include "Volume.hpp"
+#include "../material/Material.hpp"
+
 #include <vector>
 
 class Sphere : public Volume
@@ -12,8 +14,8 @@ class Sphere : public Volume
     double _z;
     double _r;
   public:
-    Sphere(std::vector<double>*pos , double r);
-    bool isInside(std::vector<double>* pos);
+    Sphere(double* pos , double r, Material *material);
+    bool isInside(double* pos);
 };
 
 #endif

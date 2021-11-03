@@ -12,11 +12,11 @@ class Box: public Volume
     double x, y, z;
     double w_x, w_y, w_z;
   public:
-                    Box       (std::vector<double>* pos, 
-                                std::vector<double>* width, 
+                    Box       (double* pos, 
+                               double* width, 
                                 Material* material);
-    bool            isInside  (std::vector<double>* pos);
-    vector<double>* getExtent ();
+    bool            isInside  (double* pos);
+    double*         getExtent ();
 };
 
 #endif

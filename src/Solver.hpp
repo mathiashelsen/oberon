@@ -3,19 +3,22 @@
 
 #include <vector>
 #include <random>
+#include <iostream>
 
 #include "geometry/Volume.hpp"
+#include "geometry/Box.hpp"
 #include "particle/Particle.hpp"
 
 class Solver
 {
   protected:
-    std::vector<Volume *>*    objects;
-    Volume*                   simBox;
+    std::vector<Volume *>*    _objects;
+    Box*                      _simBox;
     std::vector<Particle *>*  particles;
+    std::mt19937              RNG;
     int N_max;
   public:
-          Solver        (std::vector<Volume *>* _objects, Volume* simBox);
+          Solver        (std::vector<Volume *>* objects, Box* simBox);
           ~Solver       ();
     void  initParticles (int N_init);
     void  runSimulation (int N_generations);

@@ -1,19 +1,27 @@
 #include "Box.hpp"
 
 
-                Box::Box       (std::vector<double>* pos, 
-                                std::vector<double>* width, 
+                Box::Box       (double* pos, 
+                                double* width, 
                                 Material* material)
 {
+  x = pos[0];
+  y = pos[1];
+  z = pos[2];
 
+  w_x = width[0];
+  w_y = width[1];
+  w_z = width[2];
+
+  _material = material;
 }
 
 
-bool            Box::isInside  (std::vector<double>* pos)
+bool            Box::isInside  (double* pos)
 {
-  if( fabs((*pos)[0] - x) < w_x/2.0 &&
-      fabs((*pos)[1] - y) < w_y/2.0 &&
-      fabs((*pos)[2] - z) < w_z/2.0 )
+  if( fabs(pos[0] - x) < w_x/2.0 &&
+      fabs(pos[1] - y) < w_y/2.0 &&
+      fabs(pos[2] - z) < w_z/2.0 )
   {
     return true;
   }
@@ -23,10 +31,10 @@ bool            Box::isInside  (std::vector<double>* pos)
   }
 }
 
-vector<double>* Box::getExtent ()
+double*         Box::getExtent ()
 {
-  vector<double>* extent = new vector<double>;
-  extent.reserve(6);
+  double* extent = new double[6];
+
   extent[0] = x - w_x/2;
   extent[1] = x + w_x/2;
   extent[2] = y - w_y/2;

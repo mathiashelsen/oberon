@@ -10,7 +10,7 @@ class Volume{
     Material* _material;
   public:
     ~Volume () { ; };
-    virtual bool isInside(std::vector<double>* x) = 0;
+    virtual bool isInside(double* x) = 0;
 };
 
 #endif
