@@ -29,9 +29,9 @@ void  Solver::initParticles (int N_init)
     invalid = true;
     while(invalid)
     {
-      pos[0] = pdf_x(RNG);
-      pos[1] = pdf_y(RNG);
-      pos[2] = pdf_z(RNG);
+      pos[0] = 0.0; //pdf_x(RNG);
+      pos[1] = 0.0; //pdf_y(RNG);
+      pos[2] = 0.0; //pdf_z(RNG);
       
       std::vector<Volume *>::iterator it = _objects->begin();
       while(invalid && it != _objects->end())
@@ -122,6 +122,7 @@ void  Solver::runSimulation(int N_generations)
               break;
             case Fission:
               this->fission(p, mat->getFissionNeutrons(p->E), nextGenParticles);
+              active = false;
               break;
             case Absorption:
               active = false;
