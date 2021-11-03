@@ -7,6 +7,10 @@
 
 void  Solver::initParticles (int N_init)
 {
-  // Do nothing
-  //
+  int i;
+  for(i = 0; i < N_init; i++)
+  {
+    
+    
+  }
 }

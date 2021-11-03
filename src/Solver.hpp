@@ -10,13 +10,15 @@
 class Solver
 {
   protected:
-    std::vector<Volume *>*   objects;
-    std::vector<Particle *>* particles;
+    std::vector<Volume *>*    objects;
+    Volume*                   simBox;
+    std::vector<Particle *>*  particles;
     int N_max;
   public:
-          Solver        (std::vector<Volume *>* _objects);
+          Solver        (std::vector<Volume *>* _objects, Volume* simBox);
           ~Solver       ();
     void  initParticles (int N_init);
+    void  runSimulation (int N_generations);
 };
 
 #endif
