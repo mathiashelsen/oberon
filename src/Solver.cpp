@@ -152,8 +152,8 @@ void    Solver::scatter(Particle* p, double Sigma_T)
   double d    = -log(xi(RNG))/Sigma_T;
   double u    = 2.0*xi(RNG) - 1.0;
   double xi2  = xi(RNG);
-  double v    = sqrt(1-u*u)*cos(2.0*M_PI*xi2);
-  double w    = sqrt(1-u*u)*sin(2.0*M_PI*xi2);
+  double v    = sqrt(1.0-u*u)*cos(2.0*M_PI*xi2);
+  double w    = sqrt(1.0-u*u)*sin(2.0*M_PI*xi2);
 
   p->_x = p->_x + d*u;
   p->_y = p->_y + d*v;

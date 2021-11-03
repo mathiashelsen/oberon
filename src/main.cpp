@@ -11,10 +11,10 @@
 
 int main(int argc, char** argv)
 {
-  double r = 1.0;
-  for(int i = 1; i < 50; i++)
-  {
-    r = 0.2 * (double) i;
+  double r = 7.2;
+  //for(int i = 1; i < 50; i++)
+  //{
+  //  r = 0.2 * (double) i;
     Vacuum  vac;
     HEU     heu;
 
@@ -40,8 +40,8 @@ int main(int argc, char** argv)
     simulator.initParticles(10000);
 
     std::cout << r << "\t" << (4.0*M_PI/3.0*r*r*r*19.1)/1000.0 << "\t";
-    simulator.runSimulation(1);
-  }
+    simulator.runSimulation(10);
+  //}
 
   return EXIT_SUCCESS;
 }

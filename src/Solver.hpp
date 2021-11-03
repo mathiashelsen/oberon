@@ -4,6 +4,7 @@
 #include <vector>
 #include <random>
 #include <iostream>
+#include <cmath>
 
 #include "geometry/Volume.hpp"
 #include "geometry/Box.hpp"
