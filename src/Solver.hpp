@@ -18,13 +18,14 @@ class Solver
     std::vector<Particle *>*  particles;
     std::mt19937              RNG;
     int N_max;
+    int ctr;
   public:
-          Solver          (std::vector<Volume *>* objects, Box* simBox);
-          ~Solver         ();
-    void  initParticles   (int N_init);
-    void  runSimulation   (int N_generations);
-    void  scatter         (Particle* p, double Sigma_T);
-    void  fission         (Particle* p, double nu, std::vector<Particle *>* nextGen);
+            Solver          (std::vector<Volume *>* objects, Box* simBox);
+            ~Solver         ();
+    void    initParticles   (int N_init);
+    void    runSimulation   (int N_generations);
+    double  scatter         (Particle* p, double Sigma_T);
+    int     fission         (Particle* p, double nu, std::vector<Particle *>* nextGen);
 };
 
 #endif

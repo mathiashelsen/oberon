@@ -59,14 +59,19 @@ void  Solver::runSimulation(int N_generations)
 {
   int n_begin = particles->size();
   int n_end   = n_begin;
-  double k;
+  double k = 1.0;
   std::vector<Particle*> *nextGenParticles;
   std::uniform_real_distribution<double> xi(0.0, 1.0);
+  double sTotal = 0.0;
+  int    cTotal = 0;
 
   // Loop for N_generations
   for(int i = 0; i < N_generations; i++)
   {
      nextGenParticles = new std::vector<Particle *>;
+     ctr = 0;
+     sTotal = 0.0;
+     cTotal = 0;
 
     // Loop over all particles
     for(std::vector<Particle*>::iterator it = particles->begin(); it != particles->end(); ++it)
@@ -74,8 +79,8 @@ void  Solver::runSimulation(int N_generations)
       Particle* p = *it;
       // Do random walk until particle is absorbed or outside of simulation
       // free particle if it's finished
-      bool active = true;
-      while( active && _simBox->isInside(p) )
+      bool particleAlive = true;
+      while(particleAlive)
       {
         Material* mat;
         Volume* vol = NULL;
@@ -85,7 +90,6 @@ void  Solver::runSimulation(int N_generations)
         {
           if( (*itt)->isInside(p) )
             vol = *itt;
-          
         }
 
         double Sigma_T = 0.0;
@@ -93,60 +97,79 @@ void  Solver::runSimulation(int N_generations)
         {
           //std::cout << "Could not determine medium!" << std::endl;
           //std::cout << "(" << p->_x << ", " << p->_y << ", " << p->_z << ")" << std::endl;
-          active = false;
+          particleAlive = false;
         }
         else
         {
           //std::cout << "Could determine medium." << std::endl;
           // Get the material
           mat = vol->_material;
+
+          // Maybe move this to the end of the routine so we only have to
+          // check once were the particle is
           Sigma_T = mat->getSigma_T(p->E);
-        }
-           
+          double d = this->scatter(p, Sigma_T);
+          sTotal += d;
+          // All pathlength tallies go here
 
-        if(Sigma_T == 0)
-        {
-          //Entered a material where we dont scatter anymore, so the 
-          //particle is lost. Technically you will want to check if it will
-          //still interact with another object later
-          active = false;
-        }
-        else
-        {
-          t_reaction reaction = mat->getReaction( xi(RNG) );
-
-          switch(reaction)
+          // Basically, we have to check were the particle is again... boring
+          if(vol->isInside(p))
           {
-            case Scattering:
-              this->scatter(p, Sigma_T);
-              break;
-            case Fission:
-              this->fission(p, mat->getFissionNeutrons(p->E), nextGenParticles);
-              active = false;
-              break;
-            case Absorption:
-              active = false;
-              break;
+            t_reaction reaction = mat->getReaction( xi(RNG) );
+            // All collision tallies go here
+
+            cTotal++;
+
+            switch(reaction)
+            {
+              case Scattering:
+                break;
+              case Fission:
+                this->fission(p, mat->getFissionNeutrons(p->E), nextGenParticles);
+                //particleAlive = false;
+                break;
+              case Absorption:
+                particleAlive = false;
+                break;
+            }
           }
-
+          else
+          {
+            //Scattered the particle outside
+            particleAlive = false;
+          }
         }
-       }
-
-      delete *it;
+      }
+      delete p;
     }
+
+    n_begin   = particles->size();
 
     delete particles;
 
     particles = nextGenParticles;
 
     n_end     = particles->size();
+
     k       = (double) n_end / (double) n_begin;
-    n_begin = n_end;
-    std::cout << k << "\t" << n_end << std::endl;
+
+
+    //std::cout << std::endl << "k = \t" << k << "\t" << k_hat << "\t" << k_hat2 << "\t" << n_end << std::endl;
+    //std::cout << n_end << "\t" << k << std::endl;
   }
+
+  k       = (double) n_end / (double) n_begin;
+    double k_hat = (sTotal * 2.42 * 0.06422619315744) / (double) n_begin;
+
+    double k_hat2 = 2.42 * 0.1927571778 * (double)cTotal / (double) n_begin;
+
+    std::cout << std::endl << "k = \t" << k << "\t" << k_hat << "\t" << k_hat2 << "\t" << n_end << std::endl;
+
+  n_begin = n_end;
+
 }
 
-void    Solver::scatter(Particle* p, double Sigma_T)
+double  Solver::scatter(Particle* p, double Sigma_T)
 {
   std::uniform_real_distribution<double> xi(0.0, 1.0);
 
@@ -159,9 +182,11 @@ void    Solver::scatter(Particle* p, double Sigma_T)
   p->_x = p->_x + d*u;
   p->_y = p->_y + d*v;
   p->_z = p->_z + d*w;
+
+  return d;
 }
 
-void    Solver::fission(Particle* p, double nu, std::vector<Particle *>* nextGen)
+int     Solver::fission(Particle* p, double nu, std::vector<Particle *>* nextGen)
 {
   double  nu_prime = floor(nu);
   int     nNewNeutrons = 0;
@@ -181,7 +206,8 @@ void    Solver::fission(Particle* p, double nu, std::vector<Particle *>* nextGen
 
     // Watts spectrum normally
     p_prime->E = 7.0e6;
-
     nextGen->push_back(p_prime);
   }
+
+  return nNewNeutrons;
 }

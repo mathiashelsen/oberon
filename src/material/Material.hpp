@@ -21,6 +21,7 @@ class Material
     double nuclideDensity;
   public:
     virtual double      getSigma_T  (double E);
+    virtual double      getSigma_F  (double E);
     virtual t_reaction  getReaction (double rand);
     virtual double      getFissionNeutrons(double E);
 };

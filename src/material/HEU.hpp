@@ -13,6 +13,7 @@ class HEU : public Material
   public:
                       HEU         ();
     double            getSigma_T  (double E);
+    double            getSigma_F  (double E);
     t_reaction        getReaction (double rand);
     double            getFissionNeutrons(double E);
 };
