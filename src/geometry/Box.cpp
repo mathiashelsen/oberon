@@ -158,7 +158,7 @@ double          Box::distance   (Particle* p)
   }
 
   // Distance to BACK OF THE BOX
-  _y  = y + w_y/2.0;
+  _y  = y - w_y/2.0;
 
   t   = (_y - y_0)/v;
 

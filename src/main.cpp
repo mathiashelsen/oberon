@@ -47,6 +47,16 @@ int main(int argc, char** argv)
   p.v = 0.0;
   p.x = 2.2;
   std::cout << "d_3 = " << simBox.distance(&p) << std::endl;
+
+  p.x = 0.0;
+  p.z = -2.0;
+  std::cout << "d_4 = " << simBox.distance(&p) << std::endl;
+
+  p.v = 1.0;
+  std::cout << "d_5 = " << simBox.distance(&p) << std::endl;
+
+  p.v = 1.00001;
+  std::cout << "d_6 = " << simBox.distance(&p) << std::endl;
   //Sphere  criticalMass(pos, r, (Material *)&heu);
 
   //std::vector<Volume *> objects;
