@@ -41,9 +41,9 @@ void  Solver::initParticles (int N_init)
       }
     }
     Particle* p = new Particle;
-    p->_x = pos[0];
-    p->_y = pos[1];
-    p->_z = pos[2];
+    p->x = pos[0];
+    p->y = pos[1];
+    p->z = pos[2];
     p->E  = 7.0e6;
 
     //std::cout << p->_x << "\t" << p->_y << "\t" << p->_z << std::endl;
@@ -179,9 +179,13 @@ double  Solver::scatter(Particle* p, double Sigma_T)
   double v    = sqrt(1.0-u*u)*cos(2.0*M_PI*xi2);
   double w    = sqrt(1.0-u*u)*sin(2.0*M_PI*xi2);
 
-  p->_x = p->_x + d*u;
-  p->_y = p->_y + d*v;
-  p->_z = p->_z + d*w;
+  p->u = u;
+  p->v = v;
+  p->w = w;
+
+  p->x = p->x + d*u;
+  p->y = p->y + d*v;
+  p->z = p->z + d*w;
 
   return d;
 }
@@ -200,9 +204,9 @@ int     Solver::fission(Particle* p, double nu, std::vector<Particle *>* nextGen
   for(int i = 0; i < nNewNeutrons; i++)
   {
     Particle* p_prime = new Particle;
-    p_prime->_x = p->_x;
-    p_prime->_y = p->_y;
-    p_prime->_z = p->_z;
+    p_prime->x = p->x;
+    p_prime->y = p->y;
+    p_prime->z = p->z;
 
     // Watts spectrum normally
     p_prime->E = 7.0e6;

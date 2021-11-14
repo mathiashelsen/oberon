@@ -18,6 +18,7 @@ class Sphere : public Volume
     Sphere(double* pos , double r, Material *material);
     bool isInside(double* pos);
     bool isInside(Particle* p);
+    double distance(Particle* p) { return -1.0; };
 };
 
 #endif

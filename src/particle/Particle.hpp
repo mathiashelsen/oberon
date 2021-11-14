@@ -4,7 +4,8 @@
 class Particle
 {
   public:
-    double _x, _y, _z;
+    double x, y, z;
+    double u, v, w;
     double E;
 };
 

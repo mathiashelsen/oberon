@@ -20,6 +20,7 @@ class Box: public Volume
                                 Material* material);
     bool            isInside  (double* pos);
     bool            isInside  (Particle* p);
+    double          distance  (Particle* p);
     double*         getExtent ();
 };
 

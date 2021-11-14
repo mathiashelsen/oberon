@@ -27,7 +27,7 @@ bool Sphere::isInside(Particle* p)
 {
   double delta;
 
-  delta = (p->_x - _x)*(p->_x - _x) + (p->_y - _y)*(p->_y - _y) + (p->_z - _z)*(p->_z - _z);
+  delta = (p->x - _x)*(p->x - _x) + (p->y - _y)*(p->y - _y) + (p->z - _z)*(p->z - _z);
 
   if( delta < _r*_r )
     return true;
