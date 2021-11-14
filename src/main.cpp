@@ -11,9 +11,9 @@
 
 int main(int argc, char** argv)
 {
-  double r = 8.0;
+  //double r = 8.0;
   Vacuum  vac;
-  HEU     heu;
+  //HEU     heu;
 
   double  pos[3];
   double  width[3];
@@ -22,22 +22,41 @@ int main(int argc, char** argv)
   pos[1]    = 0.0;
   pos[2]    = 0.0;
 
-  width[0]  = 3.0*r;
-  width[1]  = 3.0*r;
-  width[2]  = 3.0*r;
+  width[0]  = 2.0;
+  width[1]  = 2.0;
+  width[2]  = 2.0;
+
+  Particle p;
+  p.x = 0.0;
+  p.y = 0.0;
+  p.z = 0.0;
+
+  p.u = 0.0;
+  p.v = 0.0;
+  p.w = 1.0;
 
 
   Box     simBox(pos, width, (Material *)&vac); 
-  Sphere  criticalMass(pos, r, (Material *)&heu);
 
-  std::vector<Volume *> objects;
-  objects.push_back(&criticalMass);
+  std::cout << "d_0 = " << simBox.distance(&p) << std::endl;
+  p.v = 1.0;
+  std::cout << "d_1 = " << simBox.distance(&p) << std::endl;
+  p.v = 1.1;
+  std::cout << "d_2 = " << simBox.distance(&p) << std::endl;
 
-  Solver  simulator(&objects, &simBox);
-  simulator.initParticles(10000);
+  p.v = 0.0;
+  p.x = 2.2;
+  std::cout << "d_3 = " << simBox.distance(&p) << std::endl;
+  //Sphere  criticalMass(pos, r, (Material *)&heu);
 
-  std::cout << r << "\t" << (4.0*M_PI/3.0*r*r*r*19.1)/1000.0 << "\t";
-  simulator.runSimulation(100);
+  //std::vector<Volume *> objects;
+  //objects.push_back(&criticalMass);
+
+  //Solver  simulator(&objects, &simBox);
+  //simulator.initParticles(10000);
+
+  //std::cout << r << "\t" << (4.0*M_PI/3.0*r*r*r*19.1)/1000.0 << "\t";
+  //simulator.runSimulation(100);
 
   return EXIT_SUCCESS;
 }
