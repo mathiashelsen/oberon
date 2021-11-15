@@ -48,7 +48,6 @@ bool            Box::isInside  (Particle* p)
 double          Box::distance   (Particle* p)
 {
   double d = -1.0;
-  double d_tmp;
   double x_0, y_0, z_0;
   double u, v, w;
   double t;
@@ -74,10 +73,9 @@ double          Box::distance   (Particle* p)
     && _y >= (y-w_y/2.0) && _y <= (y + w_y/2.0)
     )
   {
-    d_tmp = sqrt((_x-x_0)*(_x-x_0) + (_y-y_0)*(_y-y_0) + (_z-z_0)*(_z-z_0));
-    if(d == -1.0 || d_tmp < d)
+    if(d == -1.0 || fabs(t) < d)
     {
-      d = d_tmp;
+      d = fabs(t);
     }
   }
 
@@ -93,10 +91,9 @@ double          Box::distance   (Particle* p)
     && _y >= (y-w_y/2.0) && _y <= (y + w_y/2.0)
     )
   {
-    d_tmp = sqrt((_x-x_0)*(_x-x_0) + (_y-y_0)*(_y-y_0) + (_z-z_0)*(_z-z_0));
-    if(d == -1.0 || d_tmp < d)
+    if(d == -1.0 || fabs(t) < d)
     {
-      d = d_tmp;
+      d = fabs(t);
     }
   }
 
@@ -112,10 +109,9 @@ double          Box::distance   (Particle* p)
     && _z >= (z-w_z/2.0) && _z <= (z + w_z/2.0)
     )
   {
-    d_tmp = sqrt((_x-x_0)*(_x-x_0) + (_y-y_0)*(_y-y_0) + (_z-z_0)*(_z-z_0));
-    if(d == -1.0 || d_tmp < d)
+    if(d == -1.0 || fabs(t) < d)
     {
-      d = d_tmp;
+      d = fabs(t);
     }
   }
 
@@ -131,10 +127,9 @@ double          Box::distance   (Particle* p)
     && _z >= (z-w_z/2.0) && _z <= (z + w_z/2.0)
     )
   {
-    d_tmp = sqrt((_x-x_0)*(_x-x_0) + (_y-y_0)*(_y-y_0) + (_z-z_0)*(_z-z_0));
-    if(d == -1.0 || d_tmp < d)
+    if(d == -1.0 || fabs(t) < d)
     {
-      d = d_tmp;
+      d = fabs(t);
     }
   }
 
@@ -150,10 +145,9 @@ double          Box::distance   (Particle* p)
     && _z >= (z-w_z/2.0) && _z <= (z + w_z/2.0)
     )
   {
-    d_tmp = sqrt((_x-x_0)*(_x-x_0) + (_y-y_0)*(_y-y_0) + (_z-z_0)*(_z-z_0));
-    if(d == -1.0 || d_tmp < d)
+    if(d == -1.0 || fabs(t) < d)
     {
-      d = d_tmp;
+      d = fabs(t);
     }
   }
 
@@ -169,10 +163,9 @@ double          Box::distance   (Particle* p)
     && _z >= (z-w_z/2.0) && _z <= (z + w_z/2.0)
     )
   {
-    d_tmp = sqrt((_x-x_0)*(_x-x_0) + (_y-y_0)*(_y-y_0) + (_z-z_0)*(_z-z_0));
-    if(d == -1.0 || d_tmp < d)
+    if(d == -1.0 || fabs(t) < d)
     {
-      d = d_tmp;
+      d = fabs(t);
     }
   }
 

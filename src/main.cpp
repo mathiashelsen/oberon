@@ -39,9 +39,10 @@ int main(int argc, char** argv)
   Box     simBox(pos, width, (Material *)&vac); 
 
   std::cout << "d_0 = " << simBox.distance(&p) << std::endl;
-  p.v = 1.0;
+  p.v = 0.7;
+  p.w = 0.7;
   std::cout << "d_1 = " << simBox.distance(&p) << std::endl;
-  p.v = 1.1;
+  p.v = 0.8;
   std::cout << "d_2 = " << simBox.distance(&p) << std::endl;
 
   p.v = 0.0;
@@ -52,10 +53,10 @@ int main(int argc, char** argv)
   p.z = -2.0;
   std::cout << "d_4 = " << simBox.distance(&p) << std::endl;
 
-  p.v = 1.0;
+  p.v = 0.7;
   std::cout << "d_5 = " << simBox.distance(&p) << std::endl;
 
-  p.v = 1.00001;
+  p.v = 0.72;
   std::cout << "d_6 = " << simBox.distance(&p) << std::endl;
   //Sphere  criticalMass(pos, r, (Material *)&heu);
 
