@@ -52,6 +52,7 @@ double          Box::distance   (Particle* p)
   double u, v, w;
   double t;
   double _x, _y, _z;
+  double norm;
 
   x_0 = p->x;
   y_0 = p->y;
@@ -60,6 +61,10 @@ double          Box::distance   (Particle* p)
   u   = p->u;
   v   = p->v;
   w   = p->w;
+  norm = sqrt(u*u + v*v + w*w);
+  u   = u / norm;
+  v   = v / norm;
+  w   = w / norm;
 
   // Distance to TOP OF THE BOX
   _z  = z + w_z/2.0;
