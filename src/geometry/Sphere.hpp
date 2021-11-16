@@ -6,6 +6,7 @@
 #include "../particle/Particle.hpp"
 
 #include <vector>
+#include <cmath>
 
 class Sphere : public Volume
 {

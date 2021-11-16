@@ -40,7 +40,7 @@ double Sphere::distance(Particle* p)
   double u, v, w;
   double x_0, y_0, z_0;
   double a, b, c;
-  double t;
+  double t1, t2;
   double det;
 
   u    = p->u;
@@ -58,5 +58,8 @@ double Sphere::distance(Particle* p)
   if(det < 0.0)
     return -1.0;
 
+  t1 = (-b + sqrt(det))/2.0;
+  t2 = (-b - sqrt(det))/2.0;
 
+  return t2;
 }
