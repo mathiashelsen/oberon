@@ -10,15 +10,15 @@
 class Sphere : public Volume
 {
   private:
-    double _x;
-    double _y;
-    double _z;
-    double _r;
+    double x;
+    double y;
+    double z;
+    double r;
   public:
     Sphere(double* pos , double r, Material *material);
     bool isInside(double* pos);
     bool isInside(Particle* p);
-    double distance(Particle* p) { return -1.0; };
+    double distance(Particle* p);
 };
 
 #endif
